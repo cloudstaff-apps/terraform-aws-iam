@@ -26,7 +26,7 @@ data "aws_iam_policy_document" "ecs_s3_policy_doc" {
   count = var.create_role && length(var.s3_access) > 0 ? 0 : 1
 
   dynamic "statement" {
-    for_each = var.allow_self_assume_role ? [1] : []
+    for_each = length(var.s3_access) > 0 ? 0 ? [1] : []
 
     content {
       actions = ["s3:PutObject", "s3:PutObjectAcl", "s3:GetObject", "s3:DeleteObject"]
