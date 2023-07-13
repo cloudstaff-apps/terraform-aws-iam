@@ -23,7 +23,7 @@ EOF
 }
 
 data "aws_iam_policy_document" "ecs_s3_policy_doc" {
-  count = var.create_role && length(var.s3_access) > 0 ? 0 : 1
+  count = var.create_role && length(var.s3_access) > 0 ? 1 : 0
   statement {
       actions = [ "s3:PutObject", "s3:PutObjectAcl", "s3:GetObject", "s3:DeleteObject" ]
       resources = var.s3_access
@@ -31,7 +31,7 @@ data "aws_iam_policy_document" "ecs_s3_policy_doc" {
 }
 
 resource "aws_iam_role_policy" "ecs_s3_policy" {
-  count  = var.create_role && length(var.s3_access) > 0 ? 0 : 1
+  count  = var.create_role && length(var.s3_access) > 0 ? 1 : 0
   name   = "${var.role_name}-s3-policy"
   role   = aws_iam_role.this[0].name
   policy = data.aws_iam_policy_document.ecs_s3_policy_doc[0].json
