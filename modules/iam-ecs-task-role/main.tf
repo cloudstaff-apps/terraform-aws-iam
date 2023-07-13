@@ -34,7 +34,7 @@ resource "aws_iam_role_policy" "ecs_s3_policy" {
   count  = var.create_role && length(var.s3_access) > 0 ? 0 : 1
   name   = "${var.role_name}-s3-policy"
   role   = aws_iam_role.this[0].name
-  policy = data.aws_iam_policy_document.ecs_s3_policy_doc.ecs_s3_policy_doc[0].json
+  policy = data.aws_iam_policy_document.ecs_s3_policy_doc[0].json
 }
 
 resource "aws_iam_role_policy_attachment" "ecs_task" {
