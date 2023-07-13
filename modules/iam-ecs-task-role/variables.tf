@@ -52,12 +52,6 @@ variable "sqs_access" {
   default     = []
 }
 
-variable "sqs_readonly_access" {
-  description = "List of ARNs of resources"
-  type        = list(string)
-  default     = []
-}
-
 variable "number_of_custom_role_policy_arns" {
   description = "Number of IAM policies to attach to IAM role"
   type        = number
