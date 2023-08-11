@@ -55,7 +55,7 @@ resource "aws_iam_role_policy" "ecs_s3_readonly_policy" {
 data "aws_iam_policy_document" "ecs_sqs_policy_doc" {
   count = var.create_role && length(var.sqs_access) > 0 ? 1 : 0
   statement {
-      actions = [ "sqs:GetQueueUrl", "sqs:DeleteMessage", "sqs:ReceiveMessage", "sqs:SendMessage" ]
+      actions = [ "sqs:GetQueueUrl", "sqs:DeleteMessage", "sqs:ReceiveMessage", "sqs:SendMessage", "sqs:ChangeMessageVisibility" ]
       resources = var.sqs_access
     }
 }
